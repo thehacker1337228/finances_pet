@@ -5,9 +5,9 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 from sqlalchemy.sql import func
 
 from sqlalchemy.ext.asyncio import AsyncAttrs, async_sessionmaker, create_async_engine
-import time
+from config import DB_DATA
 
-engine = create_async_engine("sqlite+aiosqlite:///data/user_data.db", pool_pre_ping=True)
+engine = create_async_engine(DB_DATA, pool_pre_ping=True)
 async_session = async_sessionmaker(engine)
 
 class Base(AsyncAttrs, DeclarativeBase):
