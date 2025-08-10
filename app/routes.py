@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for, request, make_response, flash, redirect
 from werkzeug.security import generate_password_hash, check_password_hash
 from services.user_requests import UserRequests, UserDto, UserLogin
-
+import asyncio
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 from config import SECRET_KEY
 
@@ -73,4 +73,14 @@ def auth_user():
         #return f"Авторизация пройдена {userlogin.get_name()}{current_user.get_name()}"
     else:
         return render_template('wrong_password.html')
+
+
+
+@app.route('/add_waste', methods=['GET', 'POST'])
+def add_waste():
+    category = request.form.get("waste_category")
+    amount = request.form.get("amount_of_waste")
+    #category_id = #запрос в бд (category)
+    #alert "трата добавлена" js
+    #redirect "/"
 
